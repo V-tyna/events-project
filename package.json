@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "firebase": "^9.2.0",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1"
+  },
+  "name": "reqistration",
+  "version": "1.0.0",
+  "description": "registration and authorization using firebase",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [
+    "registration",
+    "authorization",
+    "js",
+    "javascript",
+    "database"
+  ],
+  "author": "Boiko Valentyna <boiko.vtyna@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.5.0",
+    "html-loader": "^3.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  }
+}
