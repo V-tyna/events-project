@@ -1,51 +1,73 @@
-.navbar {
-    min-width: 100%;
-    min-height: 50px;
-    /*padding: 0.5rem 2rem 0.5rem 2rem;*/
+@media screen and (min-width: 768px) {
+    .modal-window {
+        max-width: 450px;
+        top: 50%;
+        left: 50%;
+    }
+
+    .sign-input {
+        min-width: 65%;
+    }
+
+    .modal-creation {
+        margin-left: 10px;
+        justify-content: flex-start;
+    }
 }
 
-.navbar-brand {
-    margin-left: 1rem;
+@media screen and (max-width: 576px) {
+    .modal-window {
+        max-width: 350px;
+        top: 50%;
+        left: 50%;
+    }
+
+    .sign-input {
+        min-width: 65%;
+    }
+
+    .modal-creation {
+        margin-left: 10px;
+        justify-content: flex-start;
+    }
 }
 
-.sign-container{
-    position: relative;
-    display: flex;
-    top: 0px;
-    right: 10px;
-    align-items: center;
+@font-face {
+    font-family: 'Quick';
+    src: url('../fonts/Quick.ttf') format('OpenType'),
+    url('../fonts/Quick.ttf') format('TrueType');
+    font-weight: 600;
+    font-style: normal;
 }
 
-.form-inline {
-    display: flex;
-    justify-content: flex-end;
+@font-face {
+    font-family: 'Locomotype';
+    src: url('../fonts/Locomotype  GigaSansLight.otf') format('OpenType'),
+    url('../fonts/Locomotype  GigaSansRegular.otf') format('OpenType');
+    font-weight: 600;
+    font-style: normal;
 }
 
-#search {
-    margin-left: 5px;
+body {
+    font-family: 'Quick';
 }
 
-.collapse {
-    justify-content: space-between;
-}
-
-.main-section {
+.home-page-main-section {
     margin: 20px;
 }
 
-.disabledBtn {
-    display: none;
+h1 {
+    margin-top: 20px;
+    text-align: center;
+    color: #483826;
 }
 
-.profile-link {
-    color: grey;
-}
+/*modal windows*/
 
-.profile-link:hover   {
-    color: cornflowerblue;
-}
+
 
 .registration-title, .authentication-title {
+    font-family: 'Locomotype';
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -53,26 +75,17 @@
     margin: 10px auto;
 }
 
-form {
-    margin-block-end: 5px;
-}
-
-
-.sign-input {
+.auth-sign-input {
+    justify-content: space-around;
     width: 65%;
 }
 
 .modal-title {
-    color: #0d6efd;
+    color: #483826;
 }
 
-h1 {
-    text-align: center;
-    color: #0d6efd;
+.vmodal {
 }
-
-
-.vmodal {}
 
 .vmodal.open .modal-overlay,
 .vmodal.open .modal-window {
@@ -113,7 +126,7 @@ h1 {
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0) ;
+    background: rgba(0, 0, 0, 0);
     transition: background .2s ease-in;
 }
 
@@ -127,13 +140,14 @@ h1 {
 }
 
 .modal-header {
-    padding: 5px 10px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgba(151, 148, 171, 0.5);
 }
 
 .modal-title {
+    padding: 5px;
     font-size: 1.5rem;
 }
 
@@ -148,31 +162,12 @@ h1 {
 }
 
 .modal-footer {
-    padding: 5px 10px;
+    flex-shrink: 0;
+    width: 100%;
+    padding: 7px 10px;
     border-top: 1px solid rgba(151, 148, 171, 0.5);
 }
 
-.modal-button {
-    cursor: pointer;
-    border-radius: 3px;
-    border: 1px solid #0d6efd;
-    color: white;
-    background: #0d6efd;
-    padding: 5px;
-    margin-left: 20px;
-}
-
-.modal-close{
-    cursor: pointer;
-    color: rgb(128, 128, 128);
-    border-radius: 3px;
-    border: 1px solid rgba(128, 128, 128, 0.5);
-}
-
-.blue-button {
-    cursor: pointer;
-    width: 125px;
-}
 
 .modal-creation {
     margin: 5px;
@@ -192,8 +187,12 @@ h1 {
     max-width: 350px;
     margin: 0 auto;
     padding: 10px;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
+}
+
+.col {
+    margin-bottom: 20px;
 }
 
 .card {
@@ -209,30 +208,31 @@ h1 {
 }
 
 .card-body {
+    text-align: center;
     width: 18rem;
     margin: 0;
 }
 
-@media screen and (min-width: 768px) {
-    .modal-window {
-        max-width: 450px;
-        top: 50%;
-        left: 50%;
-    }
-    .sign-input {
-        min-width: 65%;
-    }
-
+.card-text {
+    font-family: 'Locomotype';
 }
 
-@media screen and (max-width: 576px) {
-    .modal-window {
-        max-width: 350px;
-        top: 50%;
-        left: 50%;
-    }
-    .sign-input {
-        min-width: 65%;
-    }
+.user-p {
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: flex-start;
+    align-items: baseline;
+    width: 90%;
+    height: 300px;
+    margin: auto;
 }
+
+.user-p > h1 {
+    align-self: center;
+}
+
+.user-p > h2 {
+    padding: 10px;
+}
+
 

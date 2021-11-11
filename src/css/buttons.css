@@ -1,0 +1,97 @@
+/* Buttons */
+
+.disabledBtn {
+    display: none;
+}
+
+.sign-modal-button:hover, .sign-modal-button:hover:active {
+    color: #483826;
+    background-color: #F1CA89;
+    border-color: #483826;
+}
+
+.sign-modal-button {
+    cursor: pointer;
+    border-radius: 3px;
+    color: #483826;
+    border: 1px solid #F2DAC3;
+    background: #F2DAC3;
+    padding: 6px;
+    margin-left: 20px;
+}
+
+.btn-outline-success {
+    color: #483826;
+    background: transparent;
+    border: 1px solid #483826;
+}
+
+.btn-outline-success:hover, .btn-outline-success:active {
+    color: #F1CA89;
+    background: #483826;
+    border: 1px solid #F1CA89;
+}
+
+.btn-modal-close {
+    cursor: pointer;
+    color: rgb(128, 128, 128);
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+
+.event-card-activity-button {
+    color: #fff;
+    background-color: #C8C2BC;
+    border: 3px solid #C8C2BC;
+    font-family: 'Locomotype';
+    text-align: center;
+    cursor: pointer;
+    width: 135px;
+    height: 40px;
+}
+
+.event-card-activity-button:hover, .event-card-activity-button:active {
+    color: #fff;
+    background-color: #F2DAC3;
+    border: 3px solid #F2DAC3;
+}
+
+.ok {
+    color: #fff;
+    background-color: #C8C2BC;
+    border: 1px solid #C8C2BC;
+    border-radius: 3px;
+    padding: 6px;
+}
+
+.ok:hover {
+    color: #fff;
+    background-color: #F2DAC3;
+    border: 1px solid #F2DAC3;
+}
+
+.delete-button, .btn-cancel {
+    background-color: #99A799;
+    border: 1px solid #99A799;
+    border-radius: 3px;
+    padding: 6px;
+}
+
+.delete-button:hover, .btn-cancel:hover, .delete-button:active, .btn-cancel:active {
+    background-color: #ADC2A9;
+    border: 1px solid #ADC2A9;
+    border-radius: 3px;
+}
+
+.btn-delete-data {
+    color: #fff;
+    background-color: #FF4D4D;
+    border: 1px solid #FF4D4D;
+}
+
+.btn-delete-data:hover, .btn-delete-data:active {
+    color: #fff;
+    background-color: #FF8364;
+    border: 1px solid #FF8364;
+}

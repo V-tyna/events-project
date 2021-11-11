@@ -1,15 +1,18 @@
 import {initializeApp} from 'firebase/app';
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
-import {renderAuthenticatedNavbar} from './modules/authentication.js';
-import {autumn, renderCards} from './modules/event_cards.js';
-import {logOutListener, renderLogOutNavbar} from './modules/log_out.js';
+import {renderAuthenticatedNavbar} from './modules/auth/authentication.js';
+import {logOutListener, renderLogOutNavbar} from './modules/auth/log_out.js';
+import {router} from './modules/spa/routing.js';
+import {userPageRoute} from './modules/spa/user_profile_page/user_profile_page.js';
+import {homePageRoute} from './modules/spa/home_page/home_page.js';
 import './css/styles.css';
+import './css/nav_header.css';
+import './css/buttons.css';
 import './index.html';
-import './user_profile_page.html';
-import '@fortawesome/fontawesome-free/js/all.js';
-import './modules/modal_window.js';
-import './modules/registration.js';
-import './modules/validation.js';
+import './modules/dynamic_page_content/modal_window.js';
+import './modules/auth/registration.js';
+import './modules/auth/validation.js';
+import './modules/navbar_listeners.js';
 
 
 const firebaseConfig = {
@@ -22,35 +25,43 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const db = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
-
 
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
 
+        const userId = auth.currentUser.uid;
+        localStorage.setItem('userID', userId);
+
         const currentToken = user.accessToken;
         const loggedUserToken = localStorage.getItem('token');
 
         if (currentToken === loggedUserToken) {
-
             renderAuthenticatedNavbar();
-            renderCards(autumn);
-
             logOutListener();
-        }
-        else {
-            console.log('Keys from LS and CurrenUser are not the same');
-
+        } else {
             renderLogOutNavbar();
-            renderCards(autumn);
         }
-
     }
-
 });
+
+
+// --------------------------   SINGLE_PAGE_APPLICATION   ----------------------------------
+export const pages = {
+    '/home': homePageRoute,
+    '/user': userPageRoute,
+};
+
+router(window.location.pathname);
+
+
+
+
+
+
 
 
 

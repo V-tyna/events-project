@@ -1,7 +1,6 @@
 const path = require('path');
-const  HTMLWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-
 
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
@@ -15,7 +14,8 @@ module.exports = {
     },
     output: {
         filename: filename('js'),
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        clean: true
     },
     optimization: {
         runtimeChunk: true,
@@ -23,21 +23,22 @@ module.exports = {
             chunks: 'all',
         },
     },
+    performance: {
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    },
     devServer: {
         port: 4200,
         hot: isDev,
         historyApiFallback: true
     },
-   plugins : [
-            new HTMLWebpackPlugin({
-                filename: 'index.html',
-                template: './index.html'
-            }),
-           new HTMLWebpackPlugin({
-               filename: 'user_profile_page.html',
-               template: './user_profile_page.html'
-           }),
-            new CleanWebpackPlugin()],
+    devtool: false,
+    plugins: [
+        new HTMLWebpackPlugin({
+            filename: 'index.html',
+            template: './index.html'
+        }),
+        new CleanWebpackPlugin()],
     module: {
         rules: [
             {
@@ -51,10 +52,18 @@ module.exports = {
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
-                use:  {
-                    loader: 'babel-loader'
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: ['@babel/plugin-syntax-top-level-await'],
+                    }
                 }
-            }]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+            },
+        ]
     }
 
-    }
+}

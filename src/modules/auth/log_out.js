@@ -1,5 +1,4 @@
-import {renderCards, autumn} from './event_cards.js';
-
+import {changeRoute} from '../spa/routing';
 
 export function logOutListener() {
     const signOutBtn = document.querySelector('.sign-out');
@@ -8,12 +7,12 @@ export function logOutListener() {
 
     signOutBtn.addEventListener('click', () => {
         localStorage.setItem('token', null);
-        console.log(localStorage.getItem('token'));
-
-        console.log('User logged out button Clicked');
-
+        localStorage.setItem('userID', null);
+        localStorage.setItem('userName', null);
+        localStorage.setItem('email', null);
 
         renderLogOutNavbar();
+        changeRoute('/home');
     })
 
 }
@@ -29,6 +28,4 @@ export function renderLogOutNavbar() {
 
     signOut.classList.add('disabledBtn');
     containerSign.classList.add('disabledBtn');
-
-    renderCards(autumn);
 }
