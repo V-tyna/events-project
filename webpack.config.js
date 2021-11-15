@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 
-const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
+const filename = ext => `[name].[hash].${ext}`;
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {

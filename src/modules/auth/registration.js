@@ -19,6 +19,9 @@ export async function register() {
             return
         }
 
+        localStorage.setItem('userName', nameNewUser);
+        localStorage.setItem('email', email);
+
         const user = (await createUserWithEmailAndPassword(auth, email, password)).user;
         try {
             user.displayName = nameNewUser;
@@ -27,9 +30,9 @@ export async function register() {
             throw new Error(error.message);
         }
 
-        //adding information to user profile after creation, but a part of registration func:
         const userAuth = (await signInWithEmailAndPassword(auth, email, password)).user;
         try {
+
             const userId = userAuth.uid;
             const token = userAuth.accessToken;
 
@@ -38,7 +41,6 @@ export async function register() {
             renderAuthenticatedNavbar();
             logOutListener();
 
-            // await addUserCredentialsToFirebase(user);
             writeUserData(userId, nameNewUser, email);
 
         } catch (error) {

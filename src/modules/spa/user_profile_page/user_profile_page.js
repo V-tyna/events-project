@@ -10,7 +10,6 @@ export function userPageRoute() {
     return mainDivOnPage;
 }
 
-
 function addContentToUserProfileCard(mainDiv) {
     const name = mainDiv.querySelector('.user-profile-name');
     const email = mainDiv.querySelector('.user-profile-email');

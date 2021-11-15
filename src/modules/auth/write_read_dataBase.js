@@ -8,9 +8,7 @@ export function writeUserData(userId, name, email) {
     });
 }
 
-const userId = localStorage.getItem('userID');
-
-export async function getUserDataFromFirebase() {
+export async function getUserDataFromFirebase(userId) {
     try {
         const response = await fetch(`https://events-modals-default-rtdb.firebaseio.com/users/${userId}.json`, {
             method: 'GET',

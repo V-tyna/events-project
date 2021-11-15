@@ -30,19 +30,21 @@ export async function authorization() {
         return
     }
 
-    await getUserDataFromFirebase();
-
 
     const userAuth = (await signInWithEmailAndPassword(auth, signInEmail, signInPassword)).user;
 
     try {
+        const userId = userAuth.uid;
         const token = userAuth.accessToken;
 
+        localStorage.setItem('userID', userId);
         localStorage.setItem('token', token);
 
         renderAuthenticatedNavbar();
-
         logOutListener();
+
+        await getUserDataFromFirebase(userId);
+
     } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -54,7 +56,6 @@ export async function authorization() {
         }
         throw new Error(errorMessage);
     }
-    ;
 }
 
 

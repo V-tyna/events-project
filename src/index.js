@@ -38,10 +38,6 @@ export const auth = getAuth();
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        auth.uid = true
-        const userId = auth.currentUser.uid;
-        localStorage.setItem('userID', userId);
-
         const currentToken = user.accessToken;
         const loggedUserToken = localStorage.getItem('token');
 
