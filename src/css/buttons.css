@@ -82,7 +82,7 @@
     padding: 6px;
 }
 
-.delete-button:hover, .btn-cancel:hover, .delete-button:active, .btn-cancel:active {
+.delete-button:hover, .btn-cancel:hover, .btn-cancel:focus, .delete-button:active, .btn-cancel:active, .btn-cancel:focus {
     background-color: #ADC2A9;
     border: 1px solid #ADC2A9;
     border-radius: 3px;
@@ -94,7 +94,7 @@
     border: 1px solid #FF4D4D;
 }
 
-.btn-delete-data:hover, .btn-delete-data:active {
+.btn-delete-data:hover, .btn-delete-data:active .btn-delete-data:focus {
     color: #fff;
     background-color: #FF8364;
     border: 1px solid #FF8364;
