@@ -1,0 +1,56 @@
+#root {
+    min-height: calc(100vh - 90px);
+}
+
+footer {
+    position: relative;
+    padding: 0;
+    background-color: #9ba5bd;
+    min-width: 100%;
+    min-height: 70px;
+    padding: 10px;
+}
+
+#my-contacts {
+    text-align: center;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+#my-contacts p {
+    padding-left: 15px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#my-contacts li a {
+    color: #483826;
+    padding-left: 5px;
+}
+
+#my-contacts li a:hover {
+    color: #F2DAC3;
+}
+
+#my-contacts li {
+    list-style-type: none;
+    color: #483826;
+    font-family: 'Locomotype';
+}
+
+.footer-bold {
+    font-family: 'Locomotype-bold';
+    font-weight: bolder;
+}
+
+@media screen and (min-width: 768px) {
+    #my-contacts {
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #my-contacts {
+        padding-left: 0;
+    }
+}

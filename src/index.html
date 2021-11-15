@@ -22,62 +22,49 @@
 </head>
 <body>
 <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
-    <div class="container-fluid">
-        <a class="navbar-brand home-page" href="/home">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand home-page" href="/home"> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link nav-pointer home-page" href="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link nav-pointer home-page" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-pointer index-sliders" href="/sliders">Sport events</a>
+                    </li>
+                </ul>
+                <form class="nav-form-search d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn-outline-success" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav mr-auto">
+                    <div class="sign-container d-flex modal-creation reg-auth-btns">
+                        <a class="nav-link nav-pointer profile-link disabledBtn" href="/user">My profile
+                            <img src="./assets/icons/user16px.png"></a>
+                        <button class="sign-modal-button sign-out disabledBtn">Sign out</button>
+                        <button class="sign-modal-button sign-in">Sign in</button>
+                        <button class="sign-modal-button sign-up">Sign up</button>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-            <form class="nav-form-search d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn-outline-success" type="submit">Search</button>
-            </form>
-            <ul class="navbar-nav mr-auto">
-                <div class="sign-container d-flex modal-creation reg-auth-btns">
-                    <a class="nav-link nav-pointer profile-link disabledBtn"  href="/user">My profile
-                        <img src="./assets/icons/user16px.png"></a>
-                    <button class="sign-modal-button sign-out disabledBtn">Sign out</button>
-                    <button class="sign-modal-button sign-in">Sign in</button>
-                    <button class="sign-modal-button sign-up">Sign up</button>
-                </div>
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
 
 <div id="root"></div>
 
-
-<!-- Карточки из файла event_cards.js рендерятся сюда: -->
-<!--<div class="main-section row"></div>-->
+<footer>
+    <ul id="my-contacts"> <p>Developer contacts:</p>
+        <li><a class="footer-bold" href="https://github.com/V-tyna">Github</a></li>
+        <li><span class="footer-bold">&nbsp;Email:</span> boiko.vtyna@gmail.com </li>
+    </ul>
+</footer>
 
 </body>
 </html>

@@ -166,7 +166,7 @@ function modalWindowsCreation(func, autumn) {
     }
 }
 
-let listenersOfModalWindows;
+export let listenersOfModalWindows;
 let eventCardModalWindow;
 
 export function cardsModalListener(divElem) {
@@ -176,62 +176,57 @@ export function cardsModalListener(divElem) {
 
         if (event.target.className.includes('event-card-activity-button')) {
             const modalWindow = autumn.find(item => item.id === +event.target.id);
-            console.log(event.target.id)
             eventCardModalWindow = modalWindowsCreation(_modalWindowContentEventCard, modalWindow);
-            console.log(eventCardModalWindow)
             eventCardModalWindow.open();
-            listenersForModalButtons(eventCardModalWindow);
+            listenersForModalButtons(eventCardModalWindow, divElem);
         }
         if (event.target.className.includes('delete-button')) {
-            // debugger
             const modalWindow = autumn.find(item => item.delete === +event.target.id);
             eventCardModalWindow = modalWindowsCreation(_modalWindowDeleteCard, modalWindow);
-            console.log(eventCardModalWindow)
             eventCardModalWindow.open();
-            listenersForModalButtons(eventCardModalWindow);
+            listenersForModalButtons(eventCardModalWindow, divElem);
         }
     });
+}
+
+export function listenersForModalButtons(modalType, divElem) {
+    listenersOfModalWindows = setTimeout(() => {
+
+        const buttonOk = document.querySelector('.ok');
+        const backgroundOverlay = document.querySelector('.modal-overlay');
+        const buttonX = document.querySelector('.btn-modal-close');
+        const deleteBtn = document.querySelector('.btn-delete-data');
 
 
-    function listenersForModalButtons(modalType) {
-        listenersOfModalWindows = setTimeout(() => {
-
-            const buttonOk = document.querySelector('.ok');
-            const backgroundOverlay = document.querySelector('.modal-overlay');
-            const buttonX = document.querySelector('.btn-modal-close');
-            const deleteBtn = document.querySelector('.btn-delete-data');
-
-
-            if (buttonOk) {
-                buttonOk.addEventListener('click', () => {
-                    modalType.close();
-                    modalType.destroy();
-                });
-            }
-
-            backgroundOverlay.addEventListener('click', (e) => {
-                const wrap = e.target.classList.contains('modal-overlay');
-                if (!wrap) return;
-                e.preventDefault();
+        if (buttonOk) {
+            buttonOk.addEventListener('click', () => {
                 modalType.close();
                 modalType.destroy();
             });
+        }
 
-            buttonX.addEventListener('click', () => {
+        backgroundOverlay.addEventListener('click', (e) => {
+            const wrap = e.target.classList.contains('modal-overlay');
+            if (!wrap) return;
+            e.preventDefault();
+            modalType.close();
+            modalType.destroy();
+        });
+
+        buttonX.addEventListener('click', () => {
+            modalType.close();
+            modalType.destroy();
+        });
+
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', (event) => {
+                console.log(event.target)
+                autumn = autumn.filter(item => item.delete !== +event.target.id);
                 modalType.close();
                 modalType.destroy();
-            });
+                renderCards(autumn, divElem);
+            })
+        }
 
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', (event) => {
-                    console.log(event.target)
-                    autumn = autumn.filter(item => item.delete !== +event.target.id);
-                    modalType.close();
-                    modalType.destroy();
-                    renderCards(autumn, divElem);
-                })
-            }
-
-        }, 0);
-    }
+    }, 0);
 }

@@ -6,30 +6,31 @@
 
 .sign-modal-button:hover, .sign-modal-button:hover:active {
     color: #483826;
-    background-color: #F1CA89;
-    border-color: #483826;
+    background-color: #747F94FF;
+    border-color: #C8C2BC;
 }
 
 .sign-modal-button {
     cursor: pointer;
     border-radius: 3px;
     color: #483826;
-    border: 1px solid #F2DAC3;
-    background: #F2DAC3;
+    border: 1px solid #747F94FF;
+    background: #C8C2BC;
     padding: 6px;
     margin-left: 20px;
 }
 
 .btn-outline-success {
-    color: #483826;
+    color: #747F94FF;
     background: transparent;
-    border: 1px solid #483826;
+    border: 1px solid #747F94FF;
+    border-radius: 3px;
 }
 
 .btn-outline-success:hover, .btn-outline-success:active {
-    color: #F1CA89;
-    background: #483826;
-    border: 1px solid #F1CA89;
+    color: #483826;
+    background: #747F94FF;
+    border: 1px solid #483826;
 }
 
 .btn-modal-close {
@@ -42,6 +43,7 @@
 
 .event-card-activity-button {
     color: #fff;
+    text-shadow: 2px 1px 2px #8097b0;
     background-color: #C8C2BC;
     border: 3px solid #C8C2BC;
     font-family: 'Locomotype';
@@ -49,9 +51,11 @@
     cursor: pointer;
     width: 135px;
     height: 40px;
+    outline: none;
 }
 
-.event-card-activity-button:hover, .event-card-activity-button:active {
+.event-card-activity-button:hover, .event-card-activity-button:active, .event-card-activity-button:focus  {
+    outline: none;
     color: #fff;
     background-color: #F2DAC3;
     border: 3px solid #F2DAC3;
@@ -94,4 +98,8 @@
     color: #fff;
     background-color: #FF8364;
     border: 1px solid #FF8364;
+}
+
+.btn {
+    outline: none;
 }

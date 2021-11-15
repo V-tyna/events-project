@@ -1,0 +1,93 @@
+.user-profile {
+    display: flex;
+    margin: 20px;
+    background-color: rgba(242, 218, 195, 0.65);
+    border-radius: 20px;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: flex-start;
+    align-items: baseline;
+    width: 65%;
+    height: 350px;
+    margin: 20px;
+}
+
+.user-info-container {
+    background-color: rgba(200, 194, 188, 0.65);;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.user-info h3 {
+    margin-top: 20px;
+    margin-bottom: 35px;
+    align-self: center;
+}
+
+.user-profile h5 {
+    padding: 5px;
+    margin-left: 20px;
+}
+
+.user-profile p {
+    padding: 0 10px;
+    font-family: 'Locomotype';
+}
+
+.flex-container-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choose-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    font-family: 'Locomotype';
+}
+
+.avatar {
+    background-color: rgba(200, 194, 188, 0.65);;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    margin: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.avatar-none {
+    display: none;
+}
+
+.set-avatar {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    margin: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+div [class^="avatar-example"] {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}

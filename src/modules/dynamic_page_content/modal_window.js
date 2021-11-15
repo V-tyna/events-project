@@ -59,8 +59,8 @@ const authenticationModalWindowOptions = {
         </div>
     </div>
     <div class="form-group">
-        <div class="registration-title">
-            <label for="email">Your password:</label>
+        <div class="authentication-title">
+            <label for="password">Your password:</label>
             <input class="password auth-sign-input form-control" type="password" id="password" required
                    placeholder="Password">
         </div>

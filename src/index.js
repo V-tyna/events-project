@@ -5,9 +5,15 @@ import {logOutListener, renderLogOutNavbar} from './modules/auth/log_out.js';
 import {router} from './modules/spa/routing.js';
 import {userPageRoute} from './modules/spa/user_profile_page/user_profile_page.js';
 import {homePageRoute} from './modules/spa/home_page/home_page.js';
+import {slidersPageRoute} from './modules/spa/sliders_page/sliders_page';
 import './css/styles.css';
 import './css/nav_header.css';
 import './css/buttons.css';
+import './css/footer.css';
+import './modules/spa/home_page/home_page_styles.css';
+import './modules/spa/user_profile_page/user_profile_styles.css';
+import './modules/spa/sliders_page/sliders_page.css';
+import './modules/spa/sliders_page/sliders_page.js';
 import './index.html';
 import './modules/dynamic_page_content/modal_window.js';
 import './modules/auth/registration.js';
@@ -32,7 +38,7 @@ export const auth = getAuth();
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-
+        auth.uid = true
         const userId = auth.currentUser.uid;
         localStorage.setItem('userID', userId);
 
@@ -53,6 +59,7 @@ onAuthStateChanged(auth, (user) => {
 export const pages = {
     '/home': homePageRoute,
     '/user': userPageRoute,
+    '/sliders': slidersPageRoute,
 };
 
 router(window.location.pathname);

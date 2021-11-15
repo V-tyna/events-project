@@ -1,16 +1,24 @@
 #navbar {
     padding: 0;
-    background-color: #CC9B6D;
+    background-color: #9ba5bd;
     min-width: 100%;
     min-height: 50px;
 }
 
+
 .navbar-brand {
-    margin-left: 1rem;
+    margin: 0 1rem;
+    background-image: url("../assets/logo/Events_forest.png");
+    width: 150px;
+    height:70px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 }
 
 .container-fluid {
-    background-color: #CC9B6D;
+    background-color: #9ba5bd;
     padding: 10px;
 }
 
@@ -19,7 +27,7 @@
 }
 
 .nav-pointer:hover {
-    background-color: #F1CA89;
+    background-color: #C8C2BC;
     border-radius: 3px;
 }
 
@@ -33,6 +41,11 @@
 
 .form-control {
     border: 1px solid #C8C2BC;
+
+}
+
+.index-sliders {
+    word-spacing: -2px;
 }
 
 #search {
