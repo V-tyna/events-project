@@ -18,7 +18,14 @@ function renderSliders(divElem){
 
     let activeSlideIndex = 0;
 
-    sidebar.style.top = `-${(slidesCount - 1) * 100}vh`;
+    if (document.documentElement.clientWidth < 768) {
+        sidebar.style.top = `-${(slidesCount - 1) * 75}vh`;
+        console.log('50')
+    }
+    else {
+        sidebar.style.top = `-${(slidesCount - 1) * 100}vh`;
+    }
+
 
     upBtn.addEventListener('click', () => {
         changeSlide('up');

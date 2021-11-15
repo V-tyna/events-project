@@ -1,3 +1,5 @@
+import {modalWindowsCreation, listenersForModalButtons, listener} from './modal_window';
+
 function cardTemplate(obj, container) {
 
     const template = document.createElement('div');
@@ -127,12 +129,11 @@ function _modalWindowDeleteCard(arrayOfObjects) {
     window.innerHTML = `<div class="modal-overlay">
                 <div class="modal-window" style="width: 450px">
                     <div class="modal-header">
-                        <span class="modal-title"> Are you sure?</span>
-                        <button ${!arrayOfObjects.closeable ? 'disabled' : ''} class="btn-modal-close">&times;</button>
+                        <span class="modal-title"> Are you sure?</span>            
                     </div>
                     <div class="modal-body"> Delete activity: ${arrayOfObjects.title}</div>
                     <div class="modal-footer">
-                        <button class="ok btn btn-primary">Cancel</button>
+                        <button class="btn-cancel btn btn-primary">Cancel</button>
                         <button id="${arrayOfObjects.delete}" class="btn-delete-data btn btn-danger">Delete</button>
                     </div>
                 </div>`
@@ -140,33 +141,7 @@ function _modalWindowDeleteCard(arrayOfObjects) {
     return window;
 }
 
-function modalWindowsCreation(func, autumn) {
 
-    const ANIMATION_SPEED = 200;
-    const modalBlue = func(autumn);
-    let closing = false;
-
-    return {
-        open() {
-            !closing && modalBlue.classList.add('open');
-        },
-        close() {
-            closing = true;
-            modalBlue.classList.remove('open');
-            modalBlue.classList.add('hide');
-            setTimeout(() => {
-                modalBlue.classList.remove('hide');
-                closing = false;
-            }, ANIMATION_SPEED);
-        },
-        destroy() {
-            modalBlue.remove();
-            clearTimeout(listenersOfModalWindows);
-        }
-    }
-}
-
-export let listenersOfModalWindows;
 let eventCardModalWindow;
 
 export function cardsModalListener(divElem) {
@@ -184,49 +159,30 @@ export function cardsModalListener(divElem) {
             const modalWindow = autumn.find(item => item.delete === +event.target.id);
             eventCardModalWindow = modalWindowsCreation(_modalWindowDeleteCard, modalWindow);
             eventCardModalWindow.open();
-            listenersForModalButtons(eventCardModalWindow, divElem);
+            listenerOfDeleteButton(eventCardModalWindow, divElem);
         }
     });
 }
 
-export function listenersForModalButtons(modalType, divElem) {
-    listenersOfModalWindows = setTimeout(() => {
 
-        const buttonOk = document.querySelector('.ok');
-        const backgroundOverlay = document.querySelector('.modal-overlay');
-        const buttonX = document.querySelector('.btn-modal-close');
+ function listenerOfDeleteButton(modalType, divElem) {
+    setTimeout(() => {
+
+        const buttonCancel = document.querySelector('.btn-cancel');
         const deleteBtn = document.querySelector('.btn-delete-data');
 
-
-        if (buttonOk) {
-            buttonOk.addEventListener('click', () => {
+        if (buttonCancel) {
+            buttonCancel.addEventListener('click', () => {
                 modalType.close();
                 modalType.destroy();
-            });
-        }
-
-        backgroundOverlay.addEventListener('click', (e) => {
-            const wrap = e.target.classList.contains('modal-overlay');
-            if (!wrap) return;
-            e.preventDefault();
-            modalType.close();
-            modalType.destroy();
-        });
-
-        buttonX.addEventListener('click', () => {
-            modalType.close();
-            modalType.destroy();
-        });
-
-        if (deleteBtn) {
-            deleteBtn.addEventListener('click', (event) => {
-                console.log(event.target)
-                autumn = autumn.filter(item => item.delete !== +event.target.id);
-                modalType.close();
-                modalType.destroy();
-                renderCards(autumn, divElem);
             })
         }
 
+        deleteBtn.addEventListener('click', (event) => {
+            autumn = autumn.filter(item => item.delete !== +event.target.id);
+            modalType.close();
+            modalType.destroy();
+            renderCards(autumn, divElem);
+        })
     }, 0);
 }

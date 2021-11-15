@@ -1,10 +1,11 @@
 import userProfilePage from './user_page_component.html';
 import {createPage} from '../routing.js';
-import {listenersForModalButtons, listenersOfModalWindows} from "../../dynamic_page_content/event_cards";
+import {modalWindowsCreation, listenersForModalButtons} from "../../dynamic_page_content/modal_window";
 
 export function userPageRoute() {
     const mainDivOnPage = createPage(userProfilePage);
     addContentToUserProfileCard(mainDivOnPage);
+    checkAvatarInLocalStorage(mainDivOnPage);
     chooseAvatar(mainDivOnPage);
     return mainDivOnPage;
 }
@@ -28,11 +29,12 @@ function chooseAvatar(mainDiv) {
 
     avatarContainer.addEventListener('click', (e) => {
         e.preventDefault();
-        modalWindowAvatar = modalWindowsAvatarCreation(mainDiv);
+        modalWindowAvatar = modalWindowsCreation(modalWindowWithPics, mainDiv);
         modalWindowAvatar.open();
-        listenersForModalButtons(modalWindowAvatar);
         setAvatar(mainDiv);
+        listenersForModalButtons(modalWindowAvatar);
     });
+
 }
 
 function modalWindowWithPics(mainDiv) {
@@ -52,7 +54,7 @@ function modalWindowWithPics(mainDiv) {
                             </div>
                             <div class="avatar-example-dog" style="background-image: url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80');">
                             </div>
-                            <div class="avatar-example-piggy" style="background-image: url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80');">
+                            <div class="avatar-example-mops" style="background-image: url('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=417&q=80');">
                             </div>
                             <div class="avatar-example-panda" style="background-image: url('https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=872&q=80');">
                             </div>
@@ -67,32 +69,6 @@ function modalWindowWithPics(mainDiv) {
       `;
     mainDiv.appendChild(modalWindow);
     return modalWindow;
-
-}
-
-function modalWindowsAvatarCreation(mainDiv) {
-    const ANIMATION_SPEED = 200;
-    const modalBlue = modalWindowWithPics(mainDiv);
-    let closing = false;
-
-    return {
-        open() {
-            !closing && modalBlue.classList.add('open');
-        },
-        close() {
-            closing = true;
-            modalBlue.classList.remove('open');
-            modalBlue.classList.add('hide');
-            setTimeout(() => {
-                modalBlue.classList.remove('hide');
-                closing = false;
-            }, ANIMATION_SPEED);
-        },
-        destroy() {
-            modalBlue.remove();
-            clearTimeout(listenersOfModalWindows);
-        }
-    }
 }
 
 function setAvatar(mainDiv) {
@@ -107,24 +83,43 @@ function setAvatar(mainDiv) {
 
         function addClasses() {
             userChoiceAvatar.classList.add('set-avatar');
-            backgroundTextAvatar.classList.add('avatar-none')
+            backgroundTextAvatar.classList.add('avatar-none');
+        }
+
+        function saveAvatarToLS(url) {
+            localStorage.setItem('avatar', url);
         }
 
         if(targetAvatar.classList.contains('avatar-example-cat')) {
             userChoiceAvatar.style.backgroundImage = "url('https://images.unsplash.com/photo-1496890666403-e6cf521841e6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80')";
             addClasses();
+            saveAvatarToLS('https://images.unsplash.com/photo-1496890666403-e6cf521841e6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80');
         }
         if(targetAvatar.classList.contains('avatar-example-dog')) {
             userChoiceAvatar.style.backgroundImage = "url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80')";
             addClasses();
+            saveAvatarToLS('https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80');
         }
-        if(targetAvatar.classList.contains('avatar-example-piggy')) {
-            userChoiceAvatar.style.backgroundImage = "url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80')";
+        if(targetAvatar.classList.contains('avatar-example-mops')) {
+            userChoiceAvatar.style.backgroundImage = "url('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=417&q=80')";
             addClasses();
+            saveAvatarToLS('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=417&q=80');
         }
         if(targetAvatar.classList.contains('avatar-example-panda')) {
             userChoiceAvatar.style.backgroundImage = "url('https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=872&q=80')";
             addClasses();
+            saveAvatarToLS('https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=872&q=80');
         }
     })
+}
+function checkAvatarInLocalStorage(mainDiv) {
+    const savedAvatar = localStorage.getItem('avatar');
+    const userChoiceAvatar = mainDiv.querySelector('.avatar');
+    const backgroundTextAvatar = mainDiv.querySelector('.choose-avatar');
+
+    if(savedAvatar){
+        userChoiceAvatar.style.backgroundImage = `url(${savedAvatar})`;
+        backgroundTextAvatar.classList.add('avatar-none');
+        userChoiceAvatar.classList.add('set-avatar');
+    }
 }

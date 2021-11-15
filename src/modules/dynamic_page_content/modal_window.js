@@ -100,10 +100,10 @@ function _createModalTemplate(options) {
     return window;
 }
 
-function renderModalWindow(options) {
+export function modalWindowsCreation(func, options) {
 
     const ANIMATION_SPEED = 200;
-    const $modal = _createModalTemplate(options);
+    const $modal = func(options);
     let closing = false;
 
     return {
@@ -128,44 +128,46 @@ function renderModalWindow(options) {
     }
 }
 
+
 let modal;
 const regAndAuthButtons = document.querySelector('.reg-auth-btns');
 
 function openModalWindowAndWaitItsButtons() {
     modal.open();
-    waitForButtonsOfModalWindow();
+    listenersForModalButtons(modal);
 }
 
 regAndAuthButtons.addEventListener('click', (e) => {
 
     if (e.target.classList.contains('sign-up')) {
-        modal = renderModalWindow(registrationModalWindowOptions);
+        modal = modalWindowsCreation(_createModalTemplate, registrationModalWindowOptions);
         openModalWindowAndWaitItsButtons();
     }
 
     if (e.target.classList.contains('sign-in')) {
-        modal = renderModalWindow(authenticationModalWindowOptions);
+        modal = modalWindowsCreation(_createModalTemplate, authenticationModalWindowOptions);
         openModalWindowAndWaitItsButtons();
     }
 })
 
-let listener;
+export let listener;
 
-function waitForButtonsOfModalWindow() {
+export function listenersForModalButtons(modalType) {
     listener = setTimeout(() => {
         const btnRegister = document.getElementById('register');
         const buttonAuthOk = document.getElementById('btn-auth');
 
-        const buttonCancel = document.querySelector('.btn-cancel');
+        const buttonOk = document.querySelector('.ok');
         const backgroundOverlay = document.querySelector('.modal-overlay');
         const buttonX = document.querySelector('.btn-modal-close');
+        const buttonCancel = document.querySelector('.btn-cancel');
 
         if (btnRegister) {
             btnRegister.addEventListener('click', async (e) => {
                 e.preventDefault();
                 await register();
-                modal.close();
-                modal.destroy();
+                modalType.close();
+                modalType.destroy();
             });
         }
 
@@ -173,28 +175,32 @@ function waitForButtonsOfModalWindow() {
             buttonAuthOk.addEventListener('click', async (e) => {
                 e.preventDefault();
                 await authorization();
-                modal.close();
-                modal.destroy();
+                modalType.close();
+                modalType.destroy();
             });
         }
 
-        if (backgroundOverlay) {
-            backgroundOverlay.addEventListener('click', (e) => {
-                const wrap = e.target.classList.contains('modal-overlay');
-                if (!wrap) return;
-                e.preventDefault();
-                modal.close();
-                modal.destroy();
+        if (buttonOk) {
+            buttonOk.addEventListener('click', () => {
+                modalType.close();
+                modalType.destroy();
             });
         }
 
-        if (buttonX) {
+        backgroundOverlay.addEventListener('click', (e) => {
+            const wrap = e.target.classList.contains('modal-overlay');
+            if (!wrap) return;
+            e.preventDefault();
+            modalType.close();
+            modalType.destroy();
+        });
+
+        if(buttonX) {
             buttonX.addEventListener('click', () => {
-                modal.close();
-                modal.destroy();
+                modalType.close();
+                modalType.destroy();
             });
         }
-
         if (buttonCancel) {
             buttonCancel.addEventListener('click', () => {
                 modal.close();
@@ -202,8 +208,5 @@ function waitForButtonsOfModalWindow() {
             })
         }
 
-
     }, 0);
 }
-
-

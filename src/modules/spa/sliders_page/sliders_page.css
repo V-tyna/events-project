@@ -82,3 +82,41 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+@media screen and (max-width: 768px) {
+
+    .sliders-container {
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        height: 75vh;
+    }
+    .sliders-sidebar {
+        height: 75vh;
+        width: 15%;
+    }
+
+    .sliders-container .sliders-controls button {
+        left: 15%;
+        top: 50%;
+        align-items: center;
+    }
+
+    .main-slide {
+        left: 15%;
+        width: 85%;
+    }
+
+    .sliders-sidebar h1 {
+        writing-mode: vertical-rl;
+        font-size: 20px;
+        margin-bottom: 10px;
+        margin-top: -30px;
+    }
+
+    .sliders-sidebar p {
+        writing-mode: vertical-rl;
+        font-family: 'Locomotype';
+    }
+
+}

@@ -90,4 +90,21 @@ div [class^="avatar-example"] {
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 480px){
+    .user-profile {
+        flex-direction: column;
+    }
+
+    .user-info {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .user-info-container {
+        width: 100%;
+    }
 }

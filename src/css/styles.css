@@ -26,10 +26,14 @@ body {
     font-family: 'Quick';
 }
 
+#root {
+    min-height: calc(100vh - 212px);
+}
 
 h2 {
     text-align: center;
     color: #483826;
+    text-shadow: 1px 1px 2px rgba(151, 148, 171, 0.5);
 }
 
 /*modal windows*/
@@ -202,13 +206,6 @@ article {
     min-height: 900px;
 }
 
-/*aside {*/
-/*    background: #f0f0f0;*/
-/*    padding: 10px;*/
-/*    width: 200px;*/
-/*    float: right;*/
-/*}*/
-
 
 @media screen and (max-width: 980px) {
     .modal-window {
@@ -227,9 +224,9 @@ article {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
     .modal-window {
-        max-width: 300px;
+        max-width: 350px;
         top: 50%;
         left: 50%;
     }
