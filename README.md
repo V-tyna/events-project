@@ -10,6 +10,8 @@ The project is an information resource about various events.
   - Diversity of modal windows
   - Responsive design
   - Custom choosing of avatar
+  - DOM
+  - Dynamic adding content to pages
   - Vanilla JavaScript Single Page Application
  
  ## Screenshots
@@ -36,4 +38,5 @@ The project is an information resource about various events.
 - JSON
 - Fetch API
 - Single-page application
+- Bootstrap 5
  
