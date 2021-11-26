@@ -111,6 +111,7 @@ function setAvatar(mainDiv) {
         }
     })
 }
+
 function checkAvatarInLocalStorage(mainDiv) {
     const savedAvatar = localStorage.getItem('avatar');
     const userChoiceAvatar = mainDiv.querySelector('.avatar');

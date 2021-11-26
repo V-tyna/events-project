@@ -20,7 +20,6 @@ import './modules/auth/registration.js';
 import './modules/auth/validation.js';
 import './modules/navbar_listeners.js';
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyDqCd5o1Czrn1LUy-i2qURGH6F8QeA85Pc",
     authDomain: "events-modals.firebaseapp.com",
@@ -30,11 +29,9 @@ const firebaseConfig = {
     appId: "1:931787959333:web:b9bc3095bb983a3e8563cc"
 };
 
-// Initialize Firebase
-const db = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 export const auth = getAuth();
-
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -50,7 +47,6 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-
 // --------------------------   SINGLE_PAGE_APPLICATION   ----------------------------------
 export const pages = {
     '/home': homePageRoute,
@@ -59,15 +55,3 @@ export const pages = {
 };
 
 router(window.location.pathname);
-
-
-
-
-
-
-
-
-
-
-
-

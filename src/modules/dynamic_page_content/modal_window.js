@@ -77,12 +77,12 @@ const authenticationModalWindowOptions = {
 
 function _createModalTemplate(options) {
 
-    const window = document.createElement('div');
+    const modalWindow = document.createElement('div');
     const contentDefault = document.createElement('p');
     contentDefault.innerText = 'Lorem ipsum dolor sit.';
 
-    window.classList.add('vmodal');
-    window.innerHTML = `
+    modalWindow.classList.add('vmodal');
+    modalWindow.innerHTML = `
             <div class="modal-overlay">
                 <div class="modal-window" style="width: ${options.width}">
                     <div class="modal-header">
@@ -96,8 +96,8 @@ function _createModalTemplate(options) {
                 </div>
             </div>
       `;
-    document.body.appendChild(window);
-    return window;
+    document.body.appendChild(modalWindow);
+    return modalWindow;
 }
 
 export function modalWindowsCreation(func, options) {
@@ -128,7 +128,6 @@ export function modalWindowsCreation(func, options) {
     }
 }
 
-
 let modal;
 const regAndAuthButtons = document.querySelector('.reg-auth-btns');
 
@@ -156,7 +155,6 @@ export function listenersForModalButtons(modalType) {
     listener = setTimeout(() => {
         const btnRegister = document.getElementById('register');
         const buttonAuthOk = document.getElementById('btn-auth');
-
         const buttonOk = document.querySelector('.ok');
         const backgroundOverlay = document.querySelector('.modal-overlay');
         const buttonX = document.querySelector('.btn-modal-close');
@@ -201,6 +199,7 @@ export function listenersForModalButtons(modalType) {
                 modalType.destroy();
             });
         }
+
         if (buttonCancel) {
             buttonCancel.addEventListener('click', () => {
                 modal.close();

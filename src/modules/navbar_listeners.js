@@ -10,5 +10,3 @@ navbar.addEventListener('click', (e) => {
         changeRoute('/home');
     }
 })
-
-

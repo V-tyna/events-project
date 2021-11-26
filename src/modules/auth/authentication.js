@@ -1,9 +1,8 @@
 import {auth} from '../../index.js';
 import {signInWithEmailAndPassword} from 'firebase/auth';
-import {validate_email, validate_password} from './validation.js';
+import {validateEmail, validatePassword} from './validation.js';
 import {logOutListener} from './log_out.js';
 import {getUserDataFromFirebase} from './write_read_dataBase';
-
 
 export function renderAuthenticatedNavbar() {
     const signIn = document.querySelector('.sign-in');
@@ -17,33 +16,28 @@ export function renderAuthenticatedNavbar() {
     containerSign.classList.remove('disabledBtn');
 }
 
-
 export async function authorization() {
 
     const signInEmail = document.getElementById('email').value;
     const signInPassword = document.getElementById('password').value;
 
-
-    if (validate_email(signInEmail) === false || validate_password(signInPassword) === false) {
-        // toDo change alert on tooltip
+    if (!validateEmail(signInEmail)|| !validatePassword(signInPassword)) {
         alert('Your email or password is out of line');
         return
     }
 
-
     const userAuth = (await signInWithEmailAndPassword(auth, signInEmail, signInPassword)).user;
 
     try {
-        const userId = userAuth.uid;
         const token = userAuth.accessToken;
 
-        localStorage.setItem('userID', userId);
+        localStorage.setItem('userID', userAuth.uid);
         localStorage.setItem('token', token);
 
         renderAuthenticatedNavbar();
         logOutListener();
 
-        await getUserDataFromFirebase(userId);
+        await getUserDataFromFirebase(userAuth.uid);
 
     } catch (error) {
         const errorCode = error.code;
@@ -57,11 +51,3 @@ export async function authorization() {
         throw new Error(errorMessage);
     }
 }
-
-
-
-
-
-
-
-

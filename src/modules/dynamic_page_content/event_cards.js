@@ -1,4 +1,4 @@
-import {modalWindowsCreation, listenersForModalButtons, listener} from './modal_window';
+import {modalWindowsCreation, listenersForModalButtons} from './modal_window.js';
 
 function cardTemplate(obj, container) {
 
@@ -141,7 +141,6 @@ function _modalWindowDeleteCard(arrayOfObjects) {
     return window;
 }
 
-
 let eventCardModalWindow;
 
 export function cardsModalListener(divElem) {
@@ -164,10 +163,7 @@ export function cardsModalListener(divElem) {
     });
 }
 
-
  function listenerOfDeleteButton(modalType, divElem) {
-    setTimeout(() => {
-
         const buttonCancel = document.querySelector('.btn-cancel');
         const deleteBtn = document.querySelector('.btn-delete-data');
 
@@ -184,5 +180,4 @@ export function cardsModalListener(divElem) {
             modalType.destroy();
             renderCards(autumn, divElem);
         })
-    }, 0);
 }

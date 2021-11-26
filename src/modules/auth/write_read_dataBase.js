@@ -24,7 +24,6 @@ export async function getUserDataFromFirebase(userId) {
         localStorage.setItem('userName', getNameFromDB);
         localStorage.setItem('email', getEmailFromDB);
 
-        return userCredentials;
     } catch (e) {
         throw new Error(e.message);
     }

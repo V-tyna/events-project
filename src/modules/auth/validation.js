@@ -1,25 +1,25 @@
-export function validate_email(email) {
+export function validateEmail(email) {
     const expression = /^[^@]+@\w+(\.\w+)+\w$/;
     if (!expression.test(email)) {
         console.log('Your email is out of line!');
     } else {
-        return true
+        return true;
     }
 }
 
-export function validate_password(password) {
+export function validatePassword(password) {
    if (!password.length > 6) {
        console.log('Your password is out of line!');
    } else {
-       return true
+       return true;
    }
 }
 
-export function validate_RepeatedPassword(password, repeatedPassword) {
+export function validateRepeatedPassword(password, repeatedPassword) {
     if (password !== repeatedPassword) {
         console.log('Your passwords mismatch!');
-        return false
+        return false;
     } else {
-        return true
+        return true;
     }
 }

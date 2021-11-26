@@ -1,6 +1,6 @@
 import {auth} from '../../index.js'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
-import {validate_email, validate_password, validate_RepeatedPassword} from './validation.js';
+import {validateEmail, validatePassword, validateRepeatedPassword} from './validation.js';
 import {renderAuthenticatedNavbar} from './authentication.js'
 import {logOutListener} from './log_out.js';
 import {writeUserData} from './write_read_dataBase.js';
@@ -13,25 +13,18 @@ export async function register() {
         const repeatedPassword = document.getElementById('password-repeat').value;
         const nameNewUser = document.getElementById('user-name').value;
 
-        if (validate_email(email) === false || validate_password(password) === false || validate_RepeatedPassword(password, repeatedPassword) === false) {
-            // toDo change alert on tooltip
+        if (!validateEmail(email) || !validatePassword(password) || !validateRepeatedPassword(password, repeatedPassword)) {
             alert('Your email or password is out of line or passwords mismatch!');
-            return
+            return;
         }
 
         localStorage.setItem('userName', nameNewUser);
         localStorage.setItem('email', email);
 
         const user = (await createUserWithEmailAndPassword(auth, email, password)).user;
-        try {
             user.displayName = nameNewUser;
 
-        } catch (error) {
-            throw new Error(error.message);
-        }
-
         const userAuth = (await signInWithEmailAndPassword(auth, email, password)).user;
-        try {
 
             const userId = userAuth.uid;
             const token = userAuth.accessToken;
@@ -43,12 +36,7 @@ export async function register() {
 
             writeUserData(userId, nameNewUser, email);
 
-        } catch (error) {
-            throw new Error(error.message);
-        }
-
     } catch (error) {
         throw new Error(error.message);
     }
 }
-
