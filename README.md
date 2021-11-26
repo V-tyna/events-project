@@ -35,7 +35,7 @@ The project is an information resource about various events.
 - Webpack
 - Firebase
 - JSON
-- Fetch API
+- Fetch
 - Single-page application
 - Bootstrap 5
  
